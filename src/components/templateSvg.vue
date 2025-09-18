@@ -1,7 +1,16 @@
 <template>
+    <!-- Desktop Download Button - Fixed to top right of page -->
+    <button @click="() => DownloadOutput('outputSection')"
+        class="hidden lg:flex fixed top-4 right-4 z-50 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed" :disabled="!imageUrl || !userName">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <span>Download</span>
+    </button>
     <div class="relative">
         <!-- Mobile Action Buttons -->
-        <div class="md:hidden fixed w-full ml-auto top-[50px] left-auto z-20 flex space-x-2 ">
+        <div class="lg:hidden fixed w-full ml-auto top-[50px] left-auto z-20 flex space-x-2 ">
             <!-- Edit Button (Mobile only) -->
             <button @click="$emit('editTemplate')"
                 class="bg-zinc-700 hover:bg-zinc-600 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2">
@@ -13,7 +22,7 @@
             
             <!-- Download Button -->
             <button @click="() => DownloadOutput('outputSection')"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 flex disabled:opacity-50 items-center space-x-2" :disabled="!imageUrl && !userName">
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 flex disabled:opacity-50 disabled:cursor-not-allowed items-center space-x-2" :disabled="!imageUrl || !userName">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -22,17 +31,7 @@
             </button>
         </div>
 
-        <!-- Desktop Download Button -->
-        <button @click="() => DownloadOutput('outputSection')"
-            class="hidden md:flex absolute top-4 right-4 z-20 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 items-center space-x-2 disabled:opacity-50" :disabled="!imageUrl && !userName">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            <span>Download</span>
-        </button>
-
-        <div class="w-[570px] h-[600px] relative overflow-x-auto" id="outputSection">
+        <div class="w-[570px] h-[600px] relative overflow-x-auto mt-10" id="outputSection">
             <img v-if="imageUrl" :src="imageUrl" alt="User Image"
                 class="w-[250px] h-[350px] object-cover rounded-lg absolute top-[150px] left-[10px] z-10"
                 crossorigin="anonymous" />

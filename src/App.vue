@@ -2,17 +2,17 @@
   <div class="min-h-screen bg-black grid-background">
     <div class="grid grid-cols-12 min-h-screen">
       <!-- Sidebar - Takes 3 columns on desktop, full width on mobile -->
-      <div class="col-span-12 md:col-span-3" :class="showTemplate ? 'hidden md:block' : 'block'">
+      <div class="col-span-12 lg:col-span-3" :class="showTemplate ? 'hidden lg:block' : 'block'">
         <Sidebar 
-          class="w-full md:fixed md:w-[350px] h-full" 
+          class="w-full lg:sticky lg:w-[350px] h-full" 
           @updateFormData="handleFormUpdate"
           @generated="handleGenerated"
         />
       </div>
       
       <!-- Output Section - Takes 9 columns on desktop, full width on mobile -->
-      <div class="col-span-12 md:col-span-9 p-4 md:p-8 bg-black max-w-[400px] md:max-w-full overflow-x-auto" :class="showTemplate ? 'block' : 'hidden md:block'">
-         <div class="w-full max-w-lg md:max-w-none mx-auto mt-20 md:mt-0">
+      <div class="col-span-12 lg:col-span-9 p-4 md:p-8 bg-black max-w-[95%] mx-auto lg:max-w-full overflow-x-auto lg:ml-30 " :class="showTemplate ? 'block' : 'hidden lg:block'">
+         <div class="w-full max-w-lg lg:max-w-none mx-auto mt-20 lg:mt-0">
            <TemplateSvg 
              :userName="templateData.userName"
              :imageUrl="templateData.imageUrl"
@@ -34,7 +34,7 @@ const templateData = ref({
   userName: '',
   imageUrl: ''
 })
-const showTemplate = ref(true);
+const showTemplate = ref(false);
 
 // Handle form updates from Sidebar
 const handleFormUpdate = (data: { userName: string; imageUrl: string }) => {
