@@ -38,8 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useDownloadTemplateCreated } from '../composables/dp/download';
+import { onMounted } from 'vue';
 import { useNativeDownload } from '../composables/dp/download-native';
 
 // const outputSection = ref<HTMLElement | null>(null)

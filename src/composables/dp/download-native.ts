@@ -19,7 +19,6 @@ export const useNativeDownload = () => {
         if (!outputSection.value) return
 
         const element = outputSection.value
-        const rect = element.getBoundingClientRect()
         
         // Create canvas with exact element dimensions
         const canvas = document.createElement('canvas')
@@ -54,7 +53,6 @@ export const useNativeDownload = () => {
 
     const renderElementToCanvas = async (element: HTMLElement, ctx: CanvasRenderingContext2D, x: number, y: number) => {
         const computedStyle = window.getComputedStyle(element)
-        const rect = element.getBoundingClientRect()
         
         // Draw text content
         const textContent = element.textContent?.trim()
