@@ -10,7 +10,7 @@
       </div>
 
     <!-- Form Section -->
-    <div class="flex-1 p-8 space-y-8">
+    <div class="flex-1 p-4 md:p-8 space-y-8">
       <div>
         <h2 class="font-gellix text-lg font-semibold text-white mb-6">Fill Your Details</h2>
         
@@ -102,7 +102,7 @@
     <!-- Footer -->
     <div class="p-6 border-t border-zinc-800">
       <p class="text-zinc-500 text-xs font-gellix text-center">
-        We are expecting you
+        Not registered yet? <a href="https://luma.com/vq3r9q1p" target="_blank" class="text-blue-500 hover:underline">Register</a> 
       </p>
     </div>
   </div>
@@ -126,6 +126,7 @@ const {
 // Define emits to send data to parent
 const emit = defineEmits<{
   updateFormData: [data: { userName: string; imageUrl: string }]
+  generated: []
 }>()
 
 // Refs
@@ -171,8 +172,10 @@ const generateProfile = async () => {
   // Simulate generation process
   await new Promise(resolve => setTimeout(resolve, 1000))
   
-  // Emit final data to parent
   emit('updateFormData', getFormData())
+  
+  // Emit generated event to trigger mobile view change
+  emit('generated')
   
   console.log('Generated profile for:', getFormData())
   

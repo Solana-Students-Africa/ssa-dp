@@ -1,20 +1,24 @@
 <template>
   <div class="min-h-screen bg-black grid-background">
     <div class="grid grid-cols-12 min-h-screen">
-      <!-- Sidebar - Takes 5 columns -->
-      <div class="col-span-3">
+      <!-- Sidebar - Takes 3 columns on desktop, full width on mobile -->
+      <div class="col-span-12 md:col-span-3" :class="showTemplate ? 'hidden md:block' : 'block'">
         <Sidebar 
-          class="fixed w-[350px]" 
+          class="w-full md:fixed md:w-[350px] h-full" 
           @updateFormData="handleFormUpdate"
+          @generated="handleGenerated"
         />
       </div>
       
-      <!-- Output Section - Takes 7 columns -->
-      <div class="col-span-9 p-8">
-         <TemplateSvg 
-           :userName="templateData.userName"
-           :imageUrl="templateData.imageUrl"
-         />
+      <!-- Output Section - Takes 9 columns on desktop, full width on mobile -->
+      <div class="col-span-12 md:col-span-9 p-4 md:p-8 bg-black max-w-[400px] md:max-w-full overflow-x-auto" :class="showTemplate ? 'block' : 'hidden md:block'">
+         <div class="w-full max-w-lg md:max-w-none mx-auto mt-20 md:mt-0">
+           <TemplateSvg 
+             :userName="templateData.userName"
+             :imageUrl="templateData.imageUrl"
+             @editTemplate="handleEdit"
+           />
+         </div>
       </div>
     </div>
   </div>
@@ -30,10 +34,23 @@ const templateData = ref({
   userName: '',
   imageUrl: ''
 })
+const showTemplate = ref(true);
 
 // Handle form updates from Sidebar
 const handleFormUpdate = (data: { userName: string; imageUrl: string }) => {
   templateData.value = { ...data }
+}
+
+// Handle when user clicks generate (will show template on mobile)
+const handleGenerated = () => {
+  if (templateData.value.userName && templateData.value.imageUrl) {
+    showTemplate.value = true;
+  }
+}
+
+// Handle edit button click (will show form on mobile)
+const handleEdit = () => {
+  showTemplate.value = false;
 }
 </script>
 
