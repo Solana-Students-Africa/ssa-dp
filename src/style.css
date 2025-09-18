@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import './assets/css/typography.css';
+
+/* Tailwind v4 CSS-first configuration */
+@theme {
+  /* Gellix font family configuration */
+  --font-gellix: 'Gellix', sans-serif;
+  --font-itc: 'ITC Garamond Std', serif;
+}
+
+
+body{
+  font-family: var(--font-gellix);
+}
